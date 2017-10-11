@@ -24,4 +24,12 @@ class PagesController < ApplicationController
     requested_size = params[:size]
     @kitten_url = "http://lorempixel.com/#{requested_size}/#{requested_size}/cats"
   end
+
+  def secrets
+    if params[:magic_word] != "maos"
+      flash[:alert] = "Oops! You're not allowed to view the secrets page!"
+      redirect_to '/welcome'
+    end
+
+  end
 end
